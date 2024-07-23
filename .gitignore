@@ -1,0 +1,2 @@
+#do not include development libraries
+node_modules/
