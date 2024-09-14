@@ -1,3 +1,5 @@
+'use client'
+
 import * as React from 'react'
 import { useRef } from 'react'
 
@@ -47,9 +49,13 @@ export function Carrousel(props){
 
 	//any actions triggered on page change start here.
 	const changePage = ((newPage) => {
-		if(theFlicker.current.index != newPage)
-			theFlicker.current.moveTo(newPage)
-		setPostsPage(newPage)
+		const target = theFlicker.current
+		if(target !== null){
+			if(target.index !== newPage){
+				theFlicker.current.moveTo(newPage)
+			}
+			setPostsPage(newPage)
+		}
 	})
 
 	//optional timer for autoslide (property: delay (ms))

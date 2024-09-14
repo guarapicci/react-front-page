@@ -26,23 +26,25 @@ function FT(){
 
 					//using temporary variable for new panel count
 					let marau=1
-					if(theFlicking.current.panelsPerView==1){
-						marau = 2
+					const current = theFlicking.current
+					if(current!==null){
+							if (current.panelsPerView==1)
+								marau = 2
+							else
+								marau = 1
+
+						//none of these change the panels.
+						current.forceUpdate()
+						current.resize()
+
+						//setting the variable directly on the class works.
+						current.panelsPerView=marau
+
+						//reset index directly.
+						current.moveTo(0)
+
+						console.log("toggle button clicked, Flicking.panelsPerView is now " + theFlicking.current.panelsPerView)
 					}
-					else{
-						marau = 1
-					}
-					//none of these change the panels.
-					theFlicking.current.forceUpdate()
-					theFlicking.current.resize()
-
-					//setting the variable directly on the class works.
-					theFlicking.current.panelsPerView=marau
-
-					//reset index directly.
-					theFlicking.current.moveTo(0)
-
-					console.log("toggle button clicked, Flicking.panelsPerView is now " + theFlicking.current.panelsPerView)
 				}}>
 		TOGGLE</button>
 				<h5>panelsPerView react property is now {nPans}</h5>
